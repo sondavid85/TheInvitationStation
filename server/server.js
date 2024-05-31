@@ -8,17 +8,15 @@ const db = require('./config/connection');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
-const server = new ApolloServer({
-  users
-});
+// const server = new ApolloServer();
 
 const startApolloServer = async () => {
-  await server.start();
+//   await server.start();
   
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
   
-  app.use('/graphql', expressMiddleware(server));
+//   app.use('/graphql', expressMiddleware(server));
   
   if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/dist')));
