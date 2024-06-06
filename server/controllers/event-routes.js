@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Event = require("../models/events");
+const CreateEvent = require("../models/events");
 
 // Create a new event
 router.post("/", async (req, res) => {
@@ -20,7 +20,7 @@ router.post("/", async (req, res) => {
 });
 
 // Get all events
-router.get("/events", async (req, res) => {
+router.get("/CreateEvent", async (req, res) => {
   try {
     const events = await Event.find();
     res.status(200).json(events);
@@ -30,7 +30,7 @@ router.get("/events", async (req, res) => {
 });
 
 // Delete event by ID
-router.delete("/events/:id", async (req, res) => {
+router.delete("/CreateEvent/:id", async (req, res) => {
   try {
     const deletedEvent = await Event.findByIdAndDelete(req.params.id);
     res.status(200).json({ message: "Event deleted" });

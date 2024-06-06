@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Signup from './pages/Signup.jsx';
-import Events from './pages/Newevent.jsx';
+import CreateEvent from "./pages/Newevent.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -20,8 +20,8 @@ const router = createBrowserRouter([
         element: <Signup />,
       },
       {
-        path: '/Events',
-        element: <Events />,
+        path: "/CreateEvent",
+        element: <CreateEvent />,
       },
     ],
   },
