@@ -25,6 +25,6 @@ return (
             </Button>
         </Form>
     )
-} 
+}
 
 export default Signupform;
