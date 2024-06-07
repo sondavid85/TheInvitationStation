@@ -4,6 +4,7 @@ const User = require("../models/users");
 const Event = require("../models/events");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { signToken, AuthenticationError } = require('../utils/auth');
 
   const resolvers = {
     Query: {
@@ -29,7 +30,8 @@ const jwt = require('jsonwebtoken');
         if (!user) throw new Error('Invalid credentials');
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) throw new Error('Invalid credentials');
-        return jwt.sign({ userId: user._id }, 'secretkey', { expiresIn: '1h' });
+        const token = signToken(user)
+        return {token, user}
       }
     },
   };
