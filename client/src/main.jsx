@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Signup from './pages/Signup.jsx';
 import CreateEvent from "./pages/Newevent.jsx";
 import Login from "./pages/Login.jsx";
+import Events from './pages/Events.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -18,14 +19,19 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Signup />,
-      },
-      {
-        path: "/Login",
         element: <Login />,
       },
       {
-        path: "/CreateEvent",
+        path: "/signup",
+        element: <Signup />,
+      },
+
+      {
+        path: "/events",
+        element: <Events />,
+      },
+      {
+        path: "/createevent",
         element: <CreateEvent />,
       },
     ],

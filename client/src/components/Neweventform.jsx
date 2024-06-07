@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/client";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { CREATE_EVENT } from "../utils/mutations";
+import { useNavigate } from "react-router-dom";
 
 function Neweventform() {
   const [eventName, setEventName] = useState('');
@@ -11,6 +12,8 @@ function Neweventform() {
   const [location, setLocation] = useState('');
 
   const [createEvent, { data }] = useMutation(CREATE_EVENT);
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,6 +26,7 @@ function Neweventform() {
           location,
         },
       });
+    navigate("/events");
     } catch (err) {
       console.error(err);
     }

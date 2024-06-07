@@ -9,7 +9,15 @@ const { signToken, AuthenticationError } = require('../utils/auth');
   const resolvers = {
     Query: {
       users: () => User.find(),
-      events: () => Event.find()
+      events: async () => {
+      try {
+        const events = await Event.find();
+        return events;
+      } catch (error) {
+        console.error('Error fetching events:', error);
+        throw new Error('Error fetching events');
+      }
+    },
     },
 
     Mutation: {
