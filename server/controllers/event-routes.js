@@ -3,7 +3,7 @@ const router = express.Router();
 const CreateEvent = require("../models/events");
 
 // Create a new event
-router.post("/", async (req, res) => {
+router.post("/CreateEvent", async (req, res) => {
   try {
     const { eventName, eventDate, eventTime, location } = req.body;
     const newEvent = new Event({
