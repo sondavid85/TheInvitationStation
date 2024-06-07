@@ -4,12 +4,13 @@ const typeDefs = `
   type Query {
     users: [User]
     events: [Event]
+    login: [Login]
   }
 
   type User {
     id: ID!
-    username: String
-    email: String
+    email: String!
+    password: String!
   }
 
    type Event {
@@ -20,10 +21,16 @@ const typeDefs = `
     location: String
   }
 
+  type Login {
+    email: String!
+    password: String!
+  }
+
   type Mutation {
-    addUser(username: String!, email:String!, password: String!): User
+    addUser(email:String!, password: String!): User
     addEvent(eventName: String!, eventDate: String!, eventTime: String!, location: String!): Event
     deleteEvent(id: ID!): Event
+    login(email:String!, password:String!): Login
   }
 `;
 
