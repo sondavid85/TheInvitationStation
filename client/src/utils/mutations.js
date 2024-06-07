@@ -21,3 +21,21 @@ export const CREATE_EVENT = gql`
     }
   }
 `;
+export const SIGN_UP = gql`
+mutation signUp($email: String!, $password: String!) {
+  addUser(email: $email, password: $password) {
+    email
+    password
+    id
+  }
+}`;
+export const LOGIN = gql`
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      token
+      user {
+        _id
+      }
+    }
+  }
+`;

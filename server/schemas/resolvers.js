@@ -2,39 +2,19 @@
 
 const User = require("../models/users");
 const Event = require("../models/events");
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
   const resolvers = {
     Query: {
-      users: () => users,
-      events: () => Event.find(),
+      users: () => User.find(),
+      events: () => Event.find()
     },
 
     Mutation: {
-      addUser: async (parent, { username, email, password }) => {
-        return User.create({ username, email, password });
+      addUser: async (parent, { email, password }) => {
+        return User.create({ email, password });
       },
-      //     addComment: async (parent, { thoughtId, commentText }) => {
-      //       return Thought.findOneAndUpdate(
-      //         { _id: thoughtId },
-      //         {
-      //           $addToSet: { comments: { commentText } },
-      //         },
-      //         {
-      //           new: true,
-      //           runValidators: true,
-      //         }
-      //       );
-      //     },
-      //     removeThought: async (parent, { thoughtId }) => {
-      //       return Thought.findOneAndDelete({ _id: thoughtId });
-      //     },
-      //     removeComment: async (parent, { thoughtId, commentId }) => {
-      //       return Thought.findOneAndUpdate(
-      //         { _id: thoughtId },
-      //         { $pull: { comments: { _id: commentId } } },
-      //         { new: true }
-      //       );
-      //     },
       addEvent: async (
         parent,
         { eventName, eventDate, eventTime, location }
@@ -44,6 +24,13 @@ const Event = require("../models/events");
       deleteEvent: async (parent, { id }) => {
         return Event.findByIdAndDelete(id);
       },
+      login: async (_, { email, password }) => {
+        const user = await User.findOne({ email });
+        if (!user) throw new Error('Invalid credentials');
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) throw new Error('Invalid credentials');
+        return jwt.sign({ userId: user._id }, 'secretkey', { expiresIn: '1h' });
+      }
     },
   };
 
