@@ -22,6 +22,8 @@ const typeDefs = `
   }
 
   type Login {
+    id : ID
+    token: ID
     email: String!
     password: String!
   }
