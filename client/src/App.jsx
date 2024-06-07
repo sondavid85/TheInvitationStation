@@ -31,8 +31,7 @@ function App() {
         <Outlet />
         </main>
      </ApolloProvider>
-    
-     
   );
 }
+
 export default App
