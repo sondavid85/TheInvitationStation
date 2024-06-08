@@ -40,7 +40,13 @@ const { signToken, AuthenticationError } = require('../utils/auth');
         if (!isMatch) throw new Error('Invalid credentials');
         const token = signToken(user)
         return {token, user}
-      }
+      },
+      addNoteToEvent: async (_, { eventId, text }) => {
+      const event = await Event.findById(eventId);
+      event.notes.push(text);
+      await event.save();
+      return event;
+    }
     },
   };
 

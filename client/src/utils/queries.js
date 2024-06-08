@@ -8,6 +8,7 @@ export const GET_EVENTS = gql`
       eventDate
       eventTime
       location
+      notes
     }
   }
 `;

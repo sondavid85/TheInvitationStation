@@ -37,3 +37,11 @@ export const LOGIN = gql`
     }
   }
 `;
+export const ADD_NOTE_TO_EVENT = gql`
+  mutation AddNoteToEvent($eventId: ID!, $text: String!) {
+    addNoteToEvent(eventId: $eventId, text: $text) {
+      id
+      notes
+    }
+  }
+`;
