@@ -9,7 +9,15 @@ const { signToken, AuthenticationError } = require('../utils/auth');
   const resolvers = {
     Query: {
       users: () => User.find(),
-      events: () => Event.find()
+      events: async () => {
+      try {
+        const events = await Event.find();
+        return events;
+      } catch (error) {
+        console.error('Error fetching events:', error);
+        throw new Error('Error fetching events');
+      }
+    },
     },
 
     Mutation: {
@@ -32,7 +40,13 @@ const { signToken, AuthenticationError } = require('../utils/auth');
         if (!isMatch) throw new Error('Invalid credentials');
         const token = signToken(user)
         return {token, user}
-      }
+      },
+      addNoteToEvent: async (_, { eventId, text }) => {
+      const event = await Event.findById(eventId);
+      event.notes.push(text);
+      await event.save();
+      return event;
+    }
     },
   };
 

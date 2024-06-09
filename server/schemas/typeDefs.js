@@ -19,6 +19,7 @@ const typeDefs = `
     eventDate: String
     eventTime: String
     location: String
+    notes: [String]
   }
 
   type Login {
@@ -33,6 +34,7 @@ const typeDefs = `
     addEvent(eventName: String!, eventDate: String!, eventTime: String!, location: String!): Event
     deleteEvent(id: ID!): Event
     login(email:String!, password:String!): Login
+    addNoteToEvent(eventId: ID!, text: String!): Event
   }
 `;
 

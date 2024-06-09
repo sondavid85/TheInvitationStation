@@ -20,6 +20,12 @@ const eventSchema = new Schema({
     required: true,
     trim: true,
   },
+  notes: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
 });
 
 const CreateEvent = model("Event", eventSchema);
