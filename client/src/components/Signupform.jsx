@@ -35,7 +35,6 @@ const Signupform = () => {
     
     return (
         <Form onSubmit={handleSubmit}>
-        {showPasswordAlert ? <Alert key='danger' variant='danger'>Please enter/confirm your password and make sure that they match.</Alert> : null}
         <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
             <Form.Control type="email" placeholder="Enter email" value={ userEmail } onChange={(e) => setUserEmail(e.target.value)}/>
@@ -57,7 +56,8 @@ const Signupform = () => {
             <Button variant="primary" type="submit">
             Submit
             </Button>
-            {data && <p>Sign up successful!</p>}
+            {data && <Alert key='success' variant='success'>Sign up successful!</Alert>}
+            {showPasswordAlert ? <Alert key='danger' variant='danger' style={{'margin-top:':'1em'}}>Please enter/confirm your password and make sure that they match.</Alert> : null}
         </Form>
     )
   };
