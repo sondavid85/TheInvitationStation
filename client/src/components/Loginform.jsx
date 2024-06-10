@@ -50,6 +50,10 @@ function Loginform() {
           />
         </Form.Group>
 
+        <Form.Group className="mb-3">
+          <a href="/signup">Don't have an account? Click here to sign up!</a>
+        </Form.Group>
+
         <Button variant="primary" type="submit">
           Login
         </Button>
