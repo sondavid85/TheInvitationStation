@@ -34,31 +34,50 @@ const Signupform = () => {
 
     
     return (
-        <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" value={ userEmail } onChange={(e) => setUserEmail(e.target.value)}/>
-            <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-            </Form.Text>
-            </Form.Group>
+      <div>
+        <div class="hero">
+        <img src="./logo.jpg" className="logo"/>
+      </div>
+      <section style={{"width":"50%","text-align":"center","margin-left":"25%","font-style":"italic","margin-top":"1em"}}>
+        <h6>Create beautifully customized invitations effortlessly for weddings, parties, and events with our intuitive invitation generator. Choose from a variety of elegant templates, personalize with your event details, and download or share your invitations hassle-free. Make every occasion memorable with our easy-to-use invitation creation tool.</h6>
+      </section>
+        <div className="form-signup">
+          <div className="row align-items-center"></div>
+          <div className="row align-items-center">
+            <div className="col"></div>
+            <div className="col align-items-center login-col">
+              <h1>Sign Up</h1>
+              <Form onSubmit={handleSubmit}>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>Email address</Form.Label>
+                  <Form.Control type="email" placeholder="Enter email" value={ userEmail } onChange={(e) => setUserEmail(e.target.value)}/>
+                  <Form.Text className="text-muted">
+                  We'll never share your email with anyone else.
+                  </Form.Text>
+                  </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" value={ userPassword } onChange={(e) => setUserPassword(e.target.value)} />
-            </Form.Group>
+                  <Form.Group className="mb-3" controlId="formBasicPassword">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control type="password" placeholder="Password" value={ userPassword } onChange={(e) => setUserPassword(e.target.value)} />
+                  </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Confirm Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" value={ confirmPassword } onChange={(e) => setConfirmPassword(e.target.value)} />
-            </Form.Group>
+                  <Form.Group className="mb-3" controlId="formBasicPassword">
+                  <Form.Label>Confirm Password</Form.Label>
+                  <Form.Control type="password" placeholder="Password" value={ confirmPassword } onChange={(e) => setConfirmPassword(e.target.value)} />
+                  </Form.Group>
 
-            <Button variant="primary" type="submit">
-            Submit
-            </Button>
-            {data && <Alert key='success' variant='success'>Sign up successful!</Alert>}
-            {showPasswordAlert ? <Alert key='danger' variant='danger' style={{'margin-top:':'1em'}}>Please enter/confirm your password and make sure that they match.</Alert> : null}
-        </Form>
+                  <Button variant="primary" type="submit">
+                  Submit
+                  </Button>
+                  {data && <Alert key='success' variant='success'>Sign up successful!</Alert>}
+                  {showPasswordAlert ? <Alert key='danger' variant='danger' style={{'margin-top:':'1em'}}>Please enter/confirm your password and make sure that they match.</Alert> : null}
+              </Form>
+            </div>
+            <div className="col"></div>
+          </div>
+          <div className="row align-items-center"></div>      
+        </div>
+      </div>
     )
   };
 
