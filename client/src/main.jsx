@@ -7,8 +7,6 @@ import CreateEvent from "./pages/Newevent.jsx";
 import Login from "./pages/Login.jsx";
 import Events from './pages/Events.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import './App.css';
 
 const router = createBrowserRouter([

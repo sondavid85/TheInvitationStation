@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/client";
 import { GET_EVENTS } from "../utils/queries";
 import { useNavigate } from "react-router-dom";
 import Eventcard from "../components/Eventcard";
+import Nav from "../components/Nav";
 import Button from "react-bootstrap/Button";
 
 function sortEventsByDate(events) {
@@ -20,11 +21,14 @@ export default function Events() {
 
   return (
     <>
+      <Nav />
       <div class="hero">
-        <img src="./logo.jpg" className="logo"/>
+        <img src="./logo.jpg" className="logo" />
       </div>
-      <h1 style={{marginTop: "1em"}}>Upcoming Events</h1>
-      <Button onClick={handleNewEventClick} className="white-button">New Event</Button>
+      <h1 style={{ marginTop: "1em" }}>Upcoming Events</h1>
+      <Button onClick={handleNewEventClick} className="white-button">
+        New Event
+      </Button>
       {data &&
         data.events.map((event) => (
           <Eventcard
