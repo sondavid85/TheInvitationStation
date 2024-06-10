@@ -3,6 +3,21 @@ import Card from "react-bootstrap/Card";
 import { useMutation } from "@apollo/client";
 import {ADD_NOTE_TO_EVENT} from "../utils/mutations"
 
+function convertUnixToDate(unixTimestamp) {
+  unixTimestamp = Number(unixTimestamp);
+  
+  const date = new Date(unixTimestamp);
+  
+  const day = date.getUTCDate();
+  const month = date.getUTCMonth() + 1;
+  const year = date.getUTCFullYear();
+  
+  const formattedDay = day < 10 ? '0' + day : day;
+  const formattedMonth = month < 10 ? '0' + month : month;
+  
+  return `${formattedMonth}/${formattedDay}/${year}`;
+}
+
 function Eventcard({
   eventId, 
   eventName,
@@ -33,16 +48,29 @@ function Eventcard({
      }
    }
  };
-
   return (
     <div className="d-flex justify-content-center">
-      <Card style={{ width: "48rem", margin: "14px" }}>
+      <Card style={{ width: "48rem", margin: "14px", backgroundColor: "#f6f3f4" }}>
+        <div class="card-title">
+            <h2>{eventName}</h2>
+        </div>
         <Card.Body>
-          <Card.Title>{eventName}</Card.Title>
-          <Card.Subtitle className="mb-2 text-muted">{eventDate}</Card.Subtitle>
-          <Card.Subtitle className="mb-2 text-muted">{eventTime}</Card.Subtitle>
-          <Card.Subtitle className="mb-2 text-muted">{location}</Card.Subtitle>
-
+          <h5>When</h5>
+          <Card.Text className="mb-2 text-muted">{convertUnixToDate(eventDate)}{!!eventTime ? <span><strong> at</strong> {eventTime}</span> : ''}</Card.Text>
+          <h5>Where</h5>
+          <Card.Text className="mb-2 text-muted">{}</Card.Text>
+          <Card.Text className="mb-2 text-muted">{location}</Card.Text>
+          <Card.Text as="div">
+            { notes && notes.length > 0 ? <h4 style={{marginTop: "1em", textAlign: "left", fontStyle: "italic"}}>Notes</h4> : null }
+            <ul style={{listStyleType: "circle", textAlign:"left", fontStyle: "italic"}}>
+            {notes &&
+              notes.map((note, index) => (
+                <li key={index}>
+                  {note}
+                </li>
+              ))}
+            </ul>
+          </Card.Text>
           <input
             className="mb-2"
             type="text"
@@ -50,16 +78,8 @@ function Eventcard({
             onChange={(e) => setNoteText(e.target.value)}
             placeholder="Add a note"
           />
-          <button onClick={handleAddNote}>Submit</button>
 
-          <Card.Text as="div">
-            {notes &&
-              notes.map((note, index) => (
-                <div key={index}>
-                  <p>{note}</p>
-                </div>
-              ))}
-          </Card.Text>
+          <button onClick={handleAddNote} style={{marginLeft: ".5em"}}>Submit</button>
         </Card.Body>
       </Card>
     </div>

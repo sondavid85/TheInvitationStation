@@ -5,6 +5,10 @@ import { useNavigate } from "react-router-dom";
 import Eventcard from "../components/Eventcard";
 import Button from "react-bootstrap/Button";
 
+function sortEventsByDate(events) {
+  return events.slice().sort((a, b) => a.eventDate - b.eventDate);
+}
+
 export default function Events() {
 
     const { data } = useQuery(GET_EVENTS);
@@ -16,8 +20,11 @@ export default function Events() {
 
   return (
     <>
-      <h1>View your upcoming events</h1>
-      <Button onClick={handleNewEventClick}>New Event</Button>
+      <div class="hero">
+        <img src="./logo.jpg" className="logo"/>
+      </div>
+      <h1 style={{marginTop: "1em"}}>Upcoming Events</h1>
+      <Button onClick={handleNewEventClick} className="white-button">New Event</Button>
       {data &&
         data.events.map((event) => (
           <Eventcard
