@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { Alert, Button, Form } from 'react-bootstrap';
 import { SIGN_UP } from '../utils/mutations'
 import { useMutation } from "@apollo/client";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -11,6 +12,7 @@ const Signupform = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [signUp, { data }] = useMutation(SIGN_UP);
   const [showPasswordAlert, setShowPasswordAlert] = useState(false);
+  const navigate = useNavigate();
 
   // const handleChange = (e) => {
   //   setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -25,6 +27,7 @@ const Signupform = () => {
     try {
       await signUp({ variables: { email: userEmail, password: userPassword } });
       console.log(data);
+      navigate("/");
       // Optionally redirect to the login page or display a success message
         } catch (error) {
       console.error(error);
